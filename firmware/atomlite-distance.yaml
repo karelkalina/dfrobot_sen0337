@@ -27,29 +27,29 @@ dfrobot_sen0337:
 sensor:
   - platform: dfrobot_sen0337
     distance:
-      name: Distance
+      name: distance
       id: distance
-      internal: true
-    signal_strength:
-      name: Signal Strength
-      id: signal_strength
-      internal: true
+      internal: false
+    # signal_strength:
+    #   name: Signal Strength
+    #   id: signal_strength
+    #   internal: true
 
-text_sensor:
-  - platform: template
-    name: Paired Sensor Data
-    id: data      
-    update_interval: 100ms
-    lambda: |-
-      if (id(distance).has_state() && id(signal_strength).has_state()) {
-        return (
-          std::string("{\"distance\": ") + to_string(id(distance).state) +
-          std::string(", \"signal\": ") + to_string(id(signal_strength).state) +
-          std::string("}")
-        );
-      } else {
-        return std::string("{\"status\": \"booting\"}");
-      }    
+# text_sensor:
+#   - platform: template
+#     name: Paired Sensor Data
+#     id: data      
+#     update_interval: 100ms
+#     lambda: |-
+#       if (id(distance).has_state() && id(signal_strength).has_state()) {
+#         return (
+#           std::string("{\"distance\": ") + to_string(id(distance).state) +
+#           std::string(", \"signal\": ") + to_string(id(signal_strength).state) +
+#           std::string("}")
+#         );
+#       } else {
+#         return std::string("{\"status\": \"booting\"}");
+#       }    
 
 
 wifi:

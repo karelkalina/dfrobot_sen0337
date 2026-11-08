@@ -15,7 +15,7 @@ class SEN0337Node(Node):
         self.frame_id = self.get_parameter('frame_id').get_parameter_value().string_value
         poll_period = self.get_parameter('poll_period').get_parameter_value().double_value
 
-        self.url = f'http://{self.sensor_ip}/text_sensor/paired_sensor_data'
+        self.url = f'http://{self.sensor_ip}/sensor/distance'
         self.publisher_ = self.create_publisher(Range, '/sen0337/distance', 10)
         self.timer = self.create_timer(poll_period, self.timer_callback)
 
@@ -26,7 +26,8 @@ class SEN0337Node(Node):
             response = requests.get(self.url, timeout=(1.0, 2.0))
             response.raise_for_status()
             data = response.json()  
-            distance_m = float(data['value'])
+            distance_m = float(data['distance'])
+
 
             msg = Range()
             msg.header.stamp = self.get_clock().now().to_msg()
