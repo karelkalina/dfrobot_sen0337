@@ -1,74 +1,32 @@
-# Atom Lite DFRobot Distance Sensor
+# SEN0337 Distance Sensor
 
-ESPHome firmware for an [M5Stack Atom Lite](https://docs.m5stack.com/en/core/ATOM%20Lite) with a [DFRobot SEN0337](https://wiki.dfrobot.com/TOF_Laser_Range_Finder_SKU_SEN0337) TOF laser distance sensor.
+This repository contains the configuration and ROS 2 driver for the SEN0337 distance sensor.
 
-A local ESPHome external component reads the sensor's UART output and exposes distance (in meters) and signal strength as Home Assistant entities.
+## Directory Structure
+- `firmware/`: Contains the ESPHome configuration (`atomlite-distance.yaml`) and related files.
+- `ros_node/`: Contains the `sen0337_driver` ROS 2 package to interface with the sensor over HTTP.
 
-## Hardware
+## Network Configuration
+- **Static IP:** `192.168.105.67`
 
-- **M5Stack Atom Lite** (ESP32-PICO-D4, 240MHz, 4MB flash)
-- **DFRobot SEN0337** TOF laser distance sensor
-  - TX: GPIO26
-  - RX: GPIO32
-  - Baud rate: 115200
-
-## Prerequisites
-
-- [pixi](https://pixi.sh) package manager
-
-## Building and Flashing
-
+# Setup instruction
+1. (Recommended, not necessary) Connect the M5 Atom Lite to a pc and flash it with the factory firmware
+2. Go to 'web.esphome.io', and connect to your desired wifi network. Check the device ip and modify 'firmware/atomlite-distance.yaml' and 'ros_node/sen0337_driver/sen0337_driver/sen0337_node.py' to reflect this
+3. Compile and run the firmware using pixi (from `firmware/` directory)
 ```bash
-# Install dependencies
-pixi install
-
-# Compile firmware
 pixi run compile
-
-# Compile, upload and show logs (device connected via USB)
-pixi run run
-
-# Upload pre-compiled firmware
-pixi run upload
-
-# View device logs
-pixi run logs
-
-# Clean build artifacts
-pixi run clean
+pixi run upload --device {ip_address}
 ```
+4. Verify that the device runs properly, either by checking the web server, endpoint or ros node (if something isn't working, I recommend debugging in this order)
 
-## WiFi Setup
+# Wiring
+- For wiring instructions see 'https://docs.m5stack.com/en/core/Atom-Lite' and 'https://wiki.dfrobot.com/sen0337/#tech_specs'
+    
+    sensor -> jumper cable -> cable m5
 
-On first boot (or when no saved WiFi network is available), the device starts a captive portal AP. Connect to it with your phone or laptop, then configure your WiFi credentials through the portal. The credentials are saved and used on subsequent boots.
+    black -> brown -> black
+    red -> red -> red
+    blue -> yellow -> yellow
+    green -> white -> white
 
-The AP and captive portal should be also started if the device fails to connect to the saved WiFi network (e.g. due to network not available), after 90 seconds. You can use it to reconfigure WiFi settings.
-
-The Improv via serial is also supported for WiFi configuration. To use it, connect to the serial port (provided via USB) and use [ESPHome Web](https://web.esphome.io/) tool to change WiFi settings.
-
-## Sensors
-
-Once connected to WiFi and Home Assistant, the device exposes:
-
-- **Distance** — measured distance in meters (from SEN0337 TOF sensor)
-- **Signal Strength** — signal strength of the TOF measurement
-
-Additional diagnostic sensors (WiFi signal, uptime, heap free, etc.) are also available.
-
-## Web Server
-
-The device runs a web server on port 80 (`http://<device-ip>/`). It provides:
-
-- Sensor readings (distance, signal strength)
-- WiFi signal strength, IP address, SSID, and MAC address
-- Device uptime
-- Debug info (heap free, loop time, internal temperature)
-- OTA firmware update capability
-
-## Configuration
-
-Main config: `atomlite-distance.yaml`
-
-Local component: `components/dfrobot_sen0337/`
-
-Shared packages in `packages/common/`: `wifi.yaml`, `uptime.yaml`, `debug.yaml`
+    cable : 'https://docs.m5stack.com/en/accessory/cable/grove_cable'
