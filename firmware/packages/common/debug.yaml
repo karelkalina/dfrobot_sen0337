@@ -1,0 +1,21 @@
+debug:
+  update_interval: 15s
+
+text_sensor:
+  - platform: debug
+    device:
+      name: "DEBUG Device Info"
+  - platform: version
+    name: "DEBUG ESPHome Version"
+
+sensor:
+  - platform: debug
+    free:
+      name: "DEBUG Heap Free"
+    block:
+      name: "DEBUG Heap Max Block"
+    loop_time:
+      name: "DEBUG Loop Time"
+
+  - platform: internal_temperature
+    name: "Internal Temp"

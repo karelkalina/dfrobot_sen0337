@@ -1,0 +1,19 @@
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: Device IP address
+      id: esp_ip
+    ssid:
+      name: Connected to SSID
+      id: esp_ssid
+    mac_address:
+      name: Device MAC address
+      id: esp_mac
+    scan_results:
+      name: Device radio neighborhood
+      id: esp_scanresults
+
+sensor:
+  - platform: wifi_signal
+    name: WiFi signal
+    update_interval: 30s
