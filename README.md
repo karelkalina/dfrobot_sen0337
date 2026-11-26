@@ -43,6 +43,11 @@ Format of `secrets.yaml`:
 ```yaml
 wifi_ssid: "YourWiFiSSID"
 wifi_password: "YourWiFiPassword"
+
+static_ip: xxx.xxx.xxx.xxx
+gateway: xxx.xxx.xxx.xxx
+subnet: 255.255.255.0
+dns1: xxx.xxx.xxx.xxx
 ```
 
 ## ROS 2 Node
@@ -51,7 +56,6 @@ The corresponding ROS 2 node for this sensor is `sen0337_node`. It polls the
 ESPHome web server to retrieve distance measurements and publishes them as a
 `sensor_msgs/Range` message.
 
-- **Default IP:** `192.168.105.67`
 - **ESPHome Endpoint:** `/text_sensor/paired_sensor_data`
 - **Output Topic:** `/sen0337/distance` (Range in meters)
 - **Frame ID:** `sen0337_link`

@@ -60,10 +60,10 @@ wifi:
   power_save_mode: none
   ap:
   manual_ip:
-    static_ip: 192.168.105.67
-    gateway: 192.168.105.123
-    subnet: 255.255.255.0
-    dns1: 8.8.8.8
+    static_ip: !secret static_ip
+    gateway: !secret gateway
+    subnet: !secret subnet
+    dns1: !secret dns1
 
 captive_portal:
 
