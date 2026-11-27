@@ -16,7 +16,6 @@ void DFRobotSEN0337Component::dump_config() {
   ESP_LOGCONFIG(TAG, "DFRobot SEN0337:");
   LOG_SENSOR("  ", "Distance", this->distance_sensor_);
   LOG_SENSOR("  ", "Signal Strength", this->signal_strength_sensor_);
-  this->check_uart_settings(115200);
 }
 
 void DFRobotSEN0337Component::loop() {
