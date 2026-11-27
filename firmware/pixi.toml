@@ -17,4 +17,4 @@ python = "3.13.*"
 pip = ">=26.0.1,<27"
 
 [pypi-dependencies]
-esphome = "==2025.12.7"
+esphome = "==2026.11.1"

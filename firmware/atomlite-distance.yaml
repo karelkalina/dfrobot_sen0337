@@ -4,13 +4,16 @@ substitutions:
 esphome:
   name: $devicename
   name_add_mac_suffix: true
+  build_flags:
+    - -D CORE_DEBUG_LEVEL=0
+    - -D ARDUINO_LOG_LEVEL=0
   platformio_options:
-    build_flags:
-      - -D CORE_DEBUG_LEVEL=0
-      - -D ARDUINO_LOG_LEVEL=0
+    upload_speed: 115200
 
 esp32:
   board: m5stack-atom
+  framework:
+    type: esp-idf # or arduino
 
 external_components:
   - source: components
