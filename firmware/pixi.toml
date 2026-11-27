@@ -1,5 +1,5 @@
 [workspace]
-authors = ["Jakub Marsik <jmarsik@fullvent.cz>"]
+authors = ["Gaël Écorchard <gael@km-robotics.cz>", "Jakub Marsik <jmarsik@fullvent.cz>", "Karel Kalina <fakeqwertzy@gmail.com>"]
 channels = ["conda-forge"]
 name = "AtomLite-DFRobot-DistanceSensor"
 platforms = ["linux-64"]
