@@ -1,10 +1,12 @@
 # SEN0337 Distance Sensor
 
-This repository contains the configuration and ROS 2 driver for the SEN0337 distance sensor.
+This repository contains the configuration and ROS 2 driver for the [SEN0337 distance sensor](https://www.dfrobot.com/product-2004.html).
 
 ## Directory Structure
-- `firmware/`: Contains the ESPHome configuration (`atomlite-distance.yaml`) and related files for the [Atom Lite board](https://shop.m5stack.com/products/atom-lite-esp32-development-kit) to the [SEN0337 sensor](https://wiki.dfrobot.com/TOF_Laser_Range_Finder_SKU_SEN0337).
 
+- `firmware/`: Contains the ESPHome configuration (`atomlite-distance.yaml`)
+  and related files for the [Atom Lite board](https://shop.m5stack.com/products/atom-lite-esp32-development-kit) to
+  the [SEN0337 sensor](https://wiki.dfrobot.com/sen0337/).
 - `ros_node/`: Contains the `sen0337_driver` ROS 2 package to interface with the sensor over HTTP.
 
 ## Sensor Wiring
@@ -22,7 +24,7 @@ Wiring connection via jumper cable to [M5 Grove Cable](https://docs.m5stack.com/
 - Blue (Sensor) -> Yellow -> Yellow (Grove)
 - Green (Sensor) -> White -> White (Grove)
 
-For reference, see [Atom Lite Documentation](https://docs.m5stack.com/en/core/Atom-Lite) and [SEN0337 Wiki](https://wiki.dfrobot.com/TOF_Laser_Range_Finder_SKU_SEN0337).
+For reference, see [Atom Lite Documentation](https://docs.m5stack.com/en/core/Atom-Lite) and [SEN0337 Wiki](https://wiki.dfrobot.com/sen0337/).
 
 ## Build and Flash Instructions
 
