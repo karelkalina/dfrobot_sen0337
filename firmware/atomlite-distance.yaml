@@ -4,13 +4,16 @@ substitutions:
 esphome:
   name: $devicename
   name_add_mac_suffix: true
+  build_flags:
+    - -D CORE_DEBUG_LEVEL=0
+    - -D ARDUINO_LOG_LEVEL=0
   platformio_options:
-    build_flags:
-      - -D CORE_DEBUG_LEVEL=0
-      - -D ARDUINO_LOG_LEVEL=0
+    upload_speed: 115200
 
 esp32:
   board: m5stack-atom
+  framework:
+    type: esp-idf # or arduino
 
 external_components:
   - source: components
@@ -60,10 +63,10 @@ wifi:
   power_save_mode: none
   ap:
   manual_ip:
-    static_ip: 192.168.105.67
-    gateway: 192.168.105.123
-    subnet: 255.255.255.0
-    dns1: 8.8.8.8
+    static_ip: !secret static_ip
+    gateway: !secret gateway
+    subnet: !secret subnet
+    dns1: !secret dns1
 
 captive_portal:
 

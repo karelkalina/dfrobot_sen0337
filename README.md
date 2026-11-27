@@ -1,10 +1,12 @@
 # SEN0337 Distance Sensor
 
-This repository contains the configuration and ROS 2 driver for the SEN0337 distance sensor.
+This repository contains the configuration and ROS 2 driver for the [SEN0337 distance sensor](https://www.dfrobot.com/product-2004.html).
 
 ## Directory Structure
-- `firmware/`: Contains the ESPHome configuration (`atomlite-distance.yaml`) and related files for the [Atom Lite board](https://shop.m5stack.com/products/atom-lite-esp32-development-kit) to the [SEN0337 sensor](https://wiki.dfrobot.com/TOF_Laser_Range_Finder_SKU_SEN0337).
 
+- `firmware/`: Contains the ESPHome configuration (`atomlite-distance.yaml`)
+  and related files for the [Atom Lite board](https://shop.m5stack.com/products/atom-lite-esp32-development-kit) to
+  the [SEN0337 sensor](https://wiki.dfrobot.com/sen0337/).
 - `ros_node/`: Contains the `sen0337_driver` ROS 2 package to interface with the sensor over HTTP.
 
 ## Sensor Wiring
@@ -22,7 +24,7 @@ Wiring connection via jumper cable to [M5 Grove Cable](https://docs.m5stack.com/
 - Blue (Sensor) -> Yellow -> Yellow (Grove)
 - Green (Sensor) -> White -> White (Grove)
 
-For reference, see [Atom Lite Documentation](https://docs.m5stack.com/en/core/Atom-Lite) and [SEN0337 Wiki](https://wiki.dfrobot.com/TOF_Laser_Range_Finder_SKU_SEN0337).
+For reference, see [Atom Lite Documentation](https://docs.m5stack.com/en/core/Atom-Lite) and [SEN0337 Wiki](https://wiki.dfrobot.com/sen0337/).
 
 ## Build and Flash Instructions
 
@@ -43,6 +45,11 @@ Format of `secrets.yaml`:
 ```yaml
 wifi_ssid: "YourWiFiSSID"
 wifi_password: "YourWiFiPassword"
+
+static_ip: xxx.xxx.xxx.xxx
+gateway: xxx.xxx.xxx.xxx
+subnet: 255.255.255.0
+dns1: xxx.xxx.xxx.xxx
 ```
 
 ## ROS 2 Node
@@ -51,7 +58,6 @@ The corresponding ROS 2 node for this sensor is `sen0337_node`. It polls the
 ESPHome web server to retrieve distance measurements and publishes them as a
 `sensor_msgs/Range` message.
 
-- **Default IP:** `192.168.105.67`
 - **ESPHome Endpoint:** `/text_sensor/paired_sensor_data`
 - **Output Topic:** `/sen0337/distance` (Range in meters)
 - **Frame ID:** `sen0337_link`
